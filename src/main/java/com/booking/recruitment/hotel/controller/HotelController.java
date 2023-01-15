@@ -20,14 +20,16 @@ public class HotelController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Hotel> getAllHotels() {
-        return hotelService.getAllHotels();
+    public ResponseEntity<?> getAllHotels() {
+        List<Hotel>l= hotelService.getAllHotels();
+        return new ResponseEntity<>(l,HttpStatus.OK);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Hotel createHotel(@RequestBody Hotel hotel) {
-        return hotelService.createNewHotel(hotel);
+    public ResponseEntity<?> createHotel(@RequestBody Hotel hotel) {
+        Hotel h=hotelService.createNewHotel(hotel);
+        return new ResponseEntity<>(h,HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
